@@ -2,16 +2,20 @@ package stepDefinitions;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
 public class searchSteps {
 
 	WebDriver driver = null;
+
 
 	@Given("browser is open")
 	public void browser_is_open() {
@@ -27,7 +31,7 @@ public class searchSteps {
 		System.out.println("Browser is open");
 
 	}
-
+	
 	@And("go to google page")
 	public void go_to_google_page() {
 
@@ -35,6 +39,7 @@ public class searchSteps {
 		System.out.println("Inside google");
 	}
 
+	
 	@When("user send word to search")
 	public void user_send_automation_to_search() {
 
@@ -48,15 +53,22 @@ public class searchSteps {
 		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 		System.out.println("user enter key");
 	}
-
+	
+	
 	@Then("user see the results")
 	public void user_see_the_results() {
 
 		driver.getPageSource().contains("Automatización industrial - Wikipedia, la enciclopedia libre");
+
+		System.out.println("The results are displayed");
+	}
+	
+	@After
+	public void quit() {
 		
 		driver.close();
 		driver.quit();
-		System.out.println("The results are displayed");
+		System.out.println("Close driver");
 	}
 
 }
