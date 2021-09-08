@@ -30,13 +30,6 @@ jobs:
         with:
           name: Unit Test Results
           path: compiletest.xml
-
-  - name: Upload Unit Test Results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: Unit Test Results
-          path: artifacts/**/*.xml
   publish-test-results:
     name: "Publish Unit Tests Results"
     needs: build-and-test
