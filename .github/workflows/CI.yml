@@ -28,12 +28,12 @@ jobs:
       uses: mikepenz/action-junit-report@v2.4.3
       if: always()
       with:
-        report_paths: '**/target/*.xml'
+        report_paths: '**/build/test-results/test/TEST-*.xml'
     
   publish-test-results:
     name: "Publish Unit Tests Results"
     needs: build-and-test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     # the build-and-test job might be skipped, we don't need to run this job then
     if: success() || failure()
     steps:
