@@ -28,7 +28,7 @@ jobs:
       uses: mikepenz/action-junit-report@v2.4.3
       if: always()
       with:
-        report_paths: 'TEST.xml'
+        report_paths: ./src/TEST.xml
     
   publish-test-results:
     name: "Publish Unit Tests Results"
@@ -40,8 +40,8 @@ jobs:
       - name: Download Artifacts
         uses: mikepenz/action-junit-report@v2.4.3
         with:
-          path: '**/target/*.xml'
+          path: ./src/*.xml
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: '**/target/*.xml'
+          files: ./src/*.xml
