@@ -28,7 +28,7 @@ jobs:
       uses: mikepenz/action-junit-report@v2.4.3
       if: always()
       with:
-        report_paths: '**/build/test-results/test/TEST-*.xml'
+        report_paths: '**/resources/TEST-*.xml'
     
   publish-test-results:
     name: "Publish Unit Tests Results"
@@ -44,4 +44,4 @@ jobs:
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: artifacts/**/*.xml
+          files: '**/resources/TEST-*.xml
