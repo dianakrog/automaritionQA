@@ -25,7 +25,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B test --file pom.xml
     
-    publish-test-results:
+  publish-test-results:
     name: "Publish Unit Tests Results"
     runs-on: ubuntu-latest
     # the build-and-test job might be skipped, we don't need to run this job then
