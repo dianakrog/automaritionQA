@@ -26,11 +26,11 @@ jobs:
       run: mvn -B test --file pom.xml
     - uses: actions/download-artifact@v2
       with:
-        path: './target'
+        path: './target/HtmlReports.html'
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: './target'
+      working-directory: './target/HtmlReports.html'
     - uses: actions/upload-artifact@v2
       with:
-        name: my-reports
-        path: './target'
+        name: my-reportTest
+        path: './target/HtmlReports.html'
