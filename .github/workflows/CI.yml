@@ -24,19 +24,22 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B test --file pom.xml
-      
+    - name: JUnit Report Action
+        uses: mikepenz/action-junit-report@v2.4.3
+        if: always()
+        with:
+          report_paths: ./src/TEST.xml
   publish-test-results:
     name: "Publish Unit Tests Results"
     needs: build-and-test
-    runs-on: ubuntu-latest
-    # the build-and-test job might be skipped, we don't need to run this job then
+    runs-on: windows-latest
     if: success() || failure()
     steps:
       - name: Download Artifacts
-        uses: mikepenz/action-junit-report@v2.4.3
+        uses: actions/download-artifact@v2
         with:
-          path: ./target/HtmlReports.html
+          path: ./target/*.html
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: actions/upload-artifact@v2
         with:
           files: ./target/HtmlReports.html
