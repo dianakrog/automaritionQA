@@ -88,6 +88,7 @@ public class searchSteps {
 	@AfterAll
 	public void quit() {
 
+		driver.close();
 		driver.quit();
 
 	}
