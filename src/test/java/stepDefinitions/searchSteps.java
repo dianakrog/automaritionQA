@@ -5,9 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import io.cucumber.java.After;
@@ -16,11 +14,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class searchSteps {
 
+	
 	WebDriver driver;
 	
 	WebDriverManager wdmC = WebDriverManager.chromedriver();
 	WebDriverManager wdmF = WebDriverManager.firefoxdriver();
-	
+
 
 	@Given("{string} is open")
 	public void browser_is_open(String browser) {
@@ -43,6 +42,7 @@ public class searchSteps {
 			//System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/drivers/geckodriver.exe");
 			//driver = new FirefoxDriver();
 			driver = wdmF.capabilities(optionsF).create();
+			optionsF.addArguments("--headless");
 			break;
 
 		}
