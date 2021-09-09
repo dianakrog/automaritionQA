@@ -24,11 +24,6 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B test --file pom.xml
-    - name: JUnit Report Action
-      uses: mikepenz/action-junit-report@v2.4.3
-      if: always()
-      with:
-        report_paths: ./src/TEST.xml
   publish-test-results:
     name: "Publish Unit Tests Results"
     needs: build-and-test
@@ -38,8 +33,9 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          path: ./target/*.html
+          path: '**/*.html'
       - name: Publish Unit Test Results
         uses: actions/upload-artifact@v2
         with:
-          files: ./target/HtmlReports.html
+          files: '**/*.html'
+
