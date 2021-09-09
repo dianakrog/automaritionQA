@@ -49,7 +49,7 @@ public class searchSteps {
 	@Then("user see the results")
 	public void user_see_the_results() {
 
-		driver.getPageSource().contains("Automatización industrial - Wikipedia, la enciclopedia libre");
+		driver.getPageSource().contains("AutomatizaciÃ³n industrial - Wikipedia, la enciclopedia libre");
 
 	}
 
@@ -58,6 +58,7 @@ public class searchSteps {
 
 		driver.close();
 		driver.quit();
+
 	}
 
 }
