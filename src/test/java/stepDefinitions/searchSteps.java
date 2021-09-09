@@ -2,27 +2,43 @@ package stepDefinitions;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.webdriver.WebDriverBrowser;
 
 public class searchSteps {
 
-	WebDriver driver = null;
+	WebDriver driver;
+	
 
-	@Given("browser is open")
-	public void browser_is_open() {
+	@Given("{string} is open")
+	public void browser_is_open(String browser) {
 
 		String projectPath = System.getProperty("user.dir");
 
-		System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/drivers/chromedriver.exe");
+		switch (browser) {
+		case "chrome":
 
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			System.setProperty("webdriver.chrome.driver", projectPath + "/src/test/resources/drivers/chromedriver.exe");
+			driver = new ChromeDriver();
+			break;
+
+		case "firefox":
+			System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/drivers/geckodriver.exe");
+			driver = new FirefoxDriver();
+			break;
+
+		}
+
 		driver.manage().window().maximize();
 
 	}
@@ -30,7 +46,7 @@ public class searchSteps {
 	@And("go to google page")
 	public void go_to_google_page() {
 
-		driver.navigate().to("https://www.google.com");
+		driver.get("https://www.google.com");
 
 	}
 
@@ -44,19 +60,19 @@ public class searchSteps {
 	public void execute_enter_key() {
 
 		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	@Then("user see the results")
 	public void user_see_the_results() {
 
-		driver.getPageSource().contains("Automatización industrial - Wikipedia, la enciclopedia libre");
+		driver.getPageSource().contains("LTAutomation - Process Automation Experts");
 
 	}
 
 	@After
 	public void quit() {
 
-		driver.close();
 		driver.quit();
 
 	}
