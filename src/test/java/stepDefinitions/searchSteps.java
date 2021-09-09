@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +43,7 @@ public class searchSteps {
 			//System.setProperty("webdriver.gecko.driver", projectPath + "/src/test/resources/drivers/geckodriver.exe");
 			//driver = new FirefoxDriver();
 			driver = wdmF.capabilities(optionsF).create();
-			optionsF.addArguments("--headless");
+			//optionsF.addArguments("--headless");
 			break;
 
 		}
@@ -65,10 +66,11 @@ public class searchSteps {
 	}
 
 	@And("execute enter key")
-	public void execute_enter_key() {
+	public void execute_enter_key() throws InterruptedException {
 
 		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		TimeUnit.SECONDS.sleep(5);
+		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	@Then("user see the results")
@@ -78,7 +80,7 @@ public class searchSteps {
 
 	}
 
-	@After
+	@AfterAll
 	public void quit() {
 
 		driver.quit();
