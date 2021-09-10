@@ -14,7 +14,6 @@ public class getDriver {
 
 		switch (browser) {
 		case "chrome":
-			//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			WebDriverManager wdmC = WebDriverManager.chromedriver();
 			ChromeOptions optionsC = new ChromeOptions();;
 			driver = wdmC.capabilities(optionsC).create();

@@ -15,7 +15,7 @@ public class searchSteps {
 	public String browser="chrome";
 	
 	@Given("browser is open")
-	public void browser_is_open(String browser) {
+	public void browser_is_open() {
 		getDriver.iniciarConfiguracion(browser);
 		PageFactory.initElements(getDriver.driver, this);
 	}
