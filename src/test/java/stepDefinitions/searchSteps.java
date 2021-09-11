@@ -11,12 +11,10 @@ import io.cucumber.java.en.*;
 import Utils.*;
 
 public class searchSteps {
-	
-	public String browser="chrome";
-	
+
 	@Given("browser is open")
-	public void browser_is_open() {
-		getDriver.iniciarConfiguracion(browser);
+	public void browser_is_open() throws Exception {
+		getDriver.iniciarConfiguracion();
 		PageFactory.initElements(getDriver.driver, this);
 	}
 

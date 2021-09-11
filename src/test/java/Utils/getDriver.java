@@ -10,9 +10,9 @@ public class getDriver {
 
 	public static WebDriver driver;
 
-	public static void iniciarConfiguracion(String browser){
+	public static void iniciarConfiguracion() throws Exception{
 
-		switch (browser) {
+		switch (TypeBrowser.browser) {
 		case "chrome":
 			WebDriverManager wdmC = WebDriverManager.chromedriver();
 			ChromeOptions optionsC = new ChromeOptions();;
@@ -26,6 +26,8 @@ public class getDriver {
 			driver = wdmF.capabilities(optionsF).create();
 			driver.manage().window().maximize();
 			break;
+		default:
+			throw new Exception("Navegador " + TypeBrowser.browser + " No soportado" );
 
 		}
 
