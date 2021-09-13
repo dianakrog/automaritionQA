@@ -31,4 +31,5 @@ jobs:
       with:
         path: './target/generated-report'
     - name: Display structure of downloaded files
+      run: ls -R
       working-directory: './target/generated-report'
