@@ -14,7 +14,7 @@ public class searchSteps {
 
 	@Given("browser is open")
 	public void browser_is_open() throws Exception {
-		getDriver.iniciarConfiguracion();
+		getDriver.startConfig();
 		PageFactory.initElements(getDriver.driver, this);
 	}
 
