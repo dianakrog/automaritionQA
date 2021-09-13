@@ -26,7 +26,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B test --file pom.xml -DargLine="-DexeBrowser=${{matrix.browser}}"
+      run: mvn -B test --file pom.xml -DargLine="-DexeBrowser=${{matrix.browser}}" cluecumber-report:reporting
     - uses: actions/download-artifact@v2
       with:
         path: './target/generatedreport'
