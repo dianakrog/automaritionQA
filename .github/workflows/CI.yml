@@ -35,5 +35,5 @@ jobs:
       working-directory: './target'
     - uses: actions/upload-artifact@v2
       with:
-        name: my-reportTest
+        name: my-reportTest${{ matrix.browser }}
         path: './target/HtmlReports.html'
