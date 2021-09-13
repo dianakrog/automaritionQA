@@ -32,8 +32,8 @@ jobs:
         path: './target/generated-report'
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: './target'
+      working-directory: './target/generated-report'
     - uses: actions/upload-artifact@v2
       with:
         name: 'my-reportTest${{matrix.browser}}'
-        path: './target/generated-report.tar'
+        path: './target/generated-report'
