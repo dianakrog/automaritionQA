@@ -3,7 +3,7 @@
 Feature: Search in Google
 
   Scenario Outline: Valid Search
-    Given browser is open 
+    Given browser is open
     And go to google page
     When user send word to search
     And execute enter key
