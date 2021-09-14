@@ -6,30 +6,26 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class getDriver {
+public class BrowserManager {
 
-	public static WebDriver driver;
-
-	public static void startConfig() throws Exception{
+	public static WebDriver startConfig(){
 
 		switch (System.getProperty("exeBrowser","chrome")) {
 		case "chrome":
 			WebDriverManager wdmC = WebDriverManager.chromedriver();
-			ChromeOptions optionsC = new ChromeOptions();;
-			driver = wdmC.capabilities(optionsC).create();
-			driver.manage().window().maximize();
-			
-			break;
+			ChromeOptions optionsC = new ChromeOptions();
+			WebDriver driverChrome = wdmC.capabilities(optionsC).create();
+			return driverChrome;
 		case "firefox":
 			WebDriverManager wdmF = WebDriverManager.firefoxdriver();
 			FirefoxOptions optionsF = new FirefoxOptions();
-			driver = wdmF.capabilities(optionsF).create();
-			driver.manage().window().maximize();
-			break;
+			WebDriver driverFirefox = wdmF.capabilities(optionsF).create();
+			return driverFirefox;
 		default:
-			throw new Exception(System.getProperty("exeBrowser","chrome")+ " browser not supported" );
+			throw new IllegalStateException(System.getProperty("exeBrowser","chrome") + " browser not supported");
 
 		}
 
 	}
+
 }
