@@ -12,15 +12,9 @@ public class BrowserManager {
 
 		switch (System.getProperty("exeBrowser","chrome")) {
 		case "chrome":
-			WebDriverManager wdmC = WebDriverManager.chromedriver();
-			ChromeOptions optionsC = new ChromeOptions();
-			WebDriver driverChrome = wdmC.capabilities(optionsC).create();
-			return driverChrome;
+			return  WebDriverManager.chromedriver().capabilities(new ChromeOptions()).create();
 		case "firefox":
-			WebDriverManager wdmF = WebDriverManager.firefoxdriver();
-			FirefoxOptions optionsF = new FirefoxOptions();
-			WebDriver driverFirefox = wdmF.capabilities(optionsF).create();
-			return driverFirefox;
+			return  WebDriverManager.firefoxdriver().capabilities(new FirefoxOptions()).create();
 		default:
 			throw new IllegalStateException(System.getProperty("exeBrowser","chrome") + " browser not supported");
 
