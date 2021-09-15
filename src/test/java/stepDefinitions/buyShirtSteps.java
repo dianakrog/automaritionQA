@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import Utils.*;
 
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +22,10 @@ import io.cucumber.java.en.*;
 public class buyShirtSteps {
 
 	public WebDriver driver = BrowserManager.startConfig();
-	Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofMillis(30000));
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	Actions action = new Actions(driver);
+	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
+			.pollingEvery(Duration.ofSeconds(1)).ignoring(NoSuchElementException.class);
 
 	@Given("an existing {string} and {string} accesses to the online store")
 	public void an_existing_user_accesses_to_the_online_store(String user, String password) {
@@ -41,17 +46,16 @@ public class buyShirtSteps {
 	@When("buy a t-shirt")
 	public void buy_a_t_shirt() {
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Actions action = new Actions(driver);
-
 		// Select tab t-shirt
 		ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(text(),'T-shirts')])[2]"));
 		driver.findElement(By.xpath("(//a[contains(text(),'T-shirts')])[2]")).click();
 
 		// Execute Add to car Faded Short Sleeve T-shirts
-		WebElement shirtItem = driver.findElement(By.cssSelector("#center_column > ul > li > div"));
+		WebElement shirtItem = driver.findElement(By.cssSelector(".product-container"));
 		js.executeScript("window.scrollBy(0,700)", shirtItem);
+		wait.until(ExpectedConditions.titleContains("T-shirts - My Store"));
 		wait.until(ExpectedConditions.visibilityOf(shirtItem));
+		driver.findElement(By.cssSelector(".compare-form")).click();
 		action.moveToElement(shirtItem).build().perform();
 
 		// Execute btn Proceed to checkout in message Product successfully added
@@ -104,20 +108,18 @@ public class buyShirtSteps {
 	}
 
 	@Then("the order is confirmed")
-	public void the_order_is_confirmed() {
+	public void the_order_is_confirmed() throws InterruptedException {
 
 		WebElement texConfirm = driver.findElement(By.cssSelector("#center_column > div > p"));
-		wait.until(ExpectedConditions.visibilityOfAllElements(texConfirm));
-
+		wait.until(ExpectedConditions.titleContains("Order confirmation - My Store"));
 		Assertions.assertEquals("Your order on My Store is complete.", texConfirm.getText());
 
 	}
-
+	
 	@After
-	public void quit() throws Exception {
+	public void quit() {
 
 		driver.close();
-		driver.quit();
 
 	}
 

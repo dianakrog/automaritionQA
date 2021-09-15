@@ -44,17 +44,16 @@ public class searchSteps {
 
 	@Then("user see the results")
 	public void user_see_the_results() throws InterruptedException {
-		TimeUnit.SECONDS.sleep(5);
+
+		TimeUnit.SECONDS.sleep(4);
 		driver.getPageSource().contains("LTAutomation - Process Automation Experts");
-		
 
 	}
-
+	
 	@After
 	public void quit() {
 
 		driver.close();
-		driver.quit();
 
 	}
 
