@@ -10,7 +10,7 @@ public class BrowserManager {
 
 	public static WebDriver startConfig(){
 
-		switch (System.getProperty("exeBrowser","chrome")) {
+		switch (System.getProperty("exeBrowser","firefox")) {
 		case "chrome":
 			return  WebDriverManager.chromedriver().capabilities(new ChromeOptions()).create();
 		case "firefox":
