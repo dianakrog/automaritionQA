@@ -7,7 +7,7 @@ import Utils.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -19,11 +19,12 @@ import org.openqa.selenium.support.ui.Wait;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
-public class buyShirtSteps {
+public class BuyShirtSteps {
 
 	public WebDriver driver = BrowserManager.startConfig();
-	JavascriptExecutor js = (JavascriptExecutor) driver;
+
 	Actions action = new Actions(driver);
+
 	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
 			.pollingEvery(Duration.ofSeconds(1)).ignoring(NoSuchElementException.class);
 
@@ -36,10 +37,22 @@ public class buyShirtSteps {
 		driver.get("http://automationpractice.com/index.php");
 
 		// Login user
-		driver.findElement(By.className("login")).click();
-		driver.findElement(By.name("email")).sendKeys(user);
-		driver.findElement(By.name("passwd")).sendKeys(password);
-		driver.findElement(By.cssSelector("#SubmitLogin > span")).click();
+		WebElement btnLogin = driver
+				.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a"));
+		wait.until(ExpectedConditions.visibilityOf(btnLogin));
+		btnLogin.click();
+
+		WebElement inputUser = driver.findElement(By.name("email"));
+		wait.until(ExpectedConditions.visibilityOf(inputUser));
+		inputUser.sendKeys(user);
+
+		WebElement inputPassword = driver.findElement(By.name("passwd"));
+		wait.until(ExpectedConditions.visibilityOf(inputPassword));
+		inputPassword.sendKeys(password);
+
+		WebElement btnSendLogin = driver.findElement(By.cssSelector("#SubmitLogin > span"));
+		wait.until(ExpectedConditions.visibilityOf(btnSendLogin));
+		btnSendLogin.click();
 
 	}
 
@@ -47,16 +60,19 @@ public class buyShirtSteps {
 	public void buy_a_t_shirt() {
 
 		// Select tab t-shirt
-		ExpectedConditions.presenceOfElementLocated(By.xpath("(//a[contains(text(),'T-shirts')])[2]"));
-		driver.findElement(By.xpath("(//a[contains(text(),'T-shirts')])[2]")).click();
+		WebElement tabShirt = driver.findElement(By.xpath("(//a[contains(text(),'T-shirts')])[2]"));
+		wait.until(ExpectedConditions.visibilityOf(tabShirt));
+		tabShirt.click();
 
 		// Execute Add to car Faded Short Sleeve T-shirts
-		WebElement shirtItem = driver.findElement(By.cssSelector(".product-container"));
-		js.executeScript("window.scrollBy(0,700)", shirtItem);
 		wait.until(ExpectedConditions.titleContains("T-shirts - My Store"));
+		WebElement shirtItem = driver.findElement(By.xpath("//h5[@itemprop='name']//a")); 
 		wait.until(ExpectedConditions.visibilityOf(shirtItem));
+		
+		shirtItem.sendKeys(Keys.DOWN);
 		driver.findElement(By.cssSelector(".compare-form")).click();
 		action.moveToElement(shirtItem).build().perform();
+		
 
 		// Execute btn Proceed to checkout in message Product successfully added
 		// shopping cart
@@ -115,7 +131,7 @@ public class buyShirtSteps {
 		Assertions.assertEquals("Your order on My Store is complete.", texConfirm.getText());
 
 	}
-	
+
 	@After
 	public void quit() {
 

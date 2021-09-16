@@ -11,7 +11,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import Utils.*;
 
-public class searchSteps {
+public class SearchSteps {
 
 	public WebDriver driver = BrowserManager.startConfig();
 
