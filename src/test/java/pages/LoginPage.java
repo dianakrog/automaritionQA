@@ -17,10 +17,10 @@ public class LoginPage {
 	private WebDriver driver;
 	private Wait<WebDriver> wait;
 	
-	@FindBy(name = "email")
+	@FindBy(css = "#email")
 	WebElement inputUser;
 	
-	@FindBy(name = "passwd")
+	@FindBy(css = "#passwd")
 	WebElement inputPassword;
 	
 	@FindBy(css = "#SubmitLogin > span")

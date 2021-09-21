@@ -18,7 +18,7 @@ public class IndexPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	@FindBy(css = "#header > div.nav > div > div > nav > div.header_user_info > a")
+	@FindBy(xpath = "//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")
 	WebElement btnSingIn;
 
 	/**
