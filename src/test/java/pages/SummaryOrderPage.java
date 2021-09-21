@@ -3,21 +3,22 @@ package pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 public class SummaryOrderPage {
-	
+
 	private WebDriver driver;
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By btn_ProceedSummary = By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");
+	@FindBy(css = ".button.btn.btn-default.standard-checkout.button-medium")
+	WebElement btnProceedSummary;
 
 	public SummaryOrderPage(WebDriver driver) {
 
@@ -33,7 +34,6 @@ public class SummaryOrderPage {
 	 */
 	public void proceedSummary() {
 
-		WebElement btnProceedSummary = driver.findElement(btn_ProceedSummary);
 		wait.until(ExpectedConditions.visibilityOf(btnProceedSummary));
 		btnProceedSummary.click();
 

@@ -4,9 +4,9 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -18,7 +18,8 @@ public class IndexPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By btn_SignIn = By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a");
+	@FindBy(css = "#header > div.nav > div > div > nav > div.header_user_info > a")
+	WebElement btnSingIn;
 
 	/**
 	 * 
@@ -46,8 +47,7 @@ public class IndexPage {
 	 */
 	public void goSignIn() {
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		WebElement btnSingIn = driver.findElement(btn_SignIn);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOf(btnSingIn));
 		btnSingIn.click();
 

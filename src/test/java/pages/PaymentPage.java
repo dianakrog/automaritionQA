@@ -3,9 +3,9 @@ package pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,9 +17,11 @@ public class PaymentPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By opc_PayByBank = By.cssSelector("#HOOK_PAYMENT > div:nth-child(1) > div > p > a");
-	By btn_ConfirmPayment = By.cssSelector("#cart_navigation > button");
-
+	@FindBy(css = "#HOOK_PAYMENT > div:nth-child(1) > div > p > a")
+	WebElement opcPayByBank;
+	@FindBy(css = "#cart_navigation > button")
+	WebElement btnConfirmPayment;
+	
 	public PaymentPage(WebDriver driver) {
 
 		this.driver = driver;
@@ -35,12 +37,12 @@ public class PaymentPage {
 	public void selectPaBankWire() {
 		
 		// Select Payment by bank wire
-		WebElement opcPayByBank = driver.findElement(opc_PayByBank);
+		
 		wait.until(ExpectedConditions.visibilityOf(opcPayByBank));
 		opcPayByBank.click();
 
 		// Confirm Payment
-		WebElement btnConfirmPayment = driver.findElement(btn_ConfirmPayment);
+		
 		wait.until(ExpectedConditions.visibilityOf(btnConfirmPayment));
 		btnConfirmPayment.click();
 

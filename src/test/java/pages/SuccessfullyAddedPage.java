@@ -3,9 +3,9 @@ package pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,7 +17,8 @@ public class SuccessfullyAddedPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By btn_ProceedCheckout = By.cssSelector(".btn.btn-default.button.button-medium");
+	@FindBy(css = ".btn.btn-default.button.button-medium")
+	WebElement btnProceedCheckout;
 
 	public SuccessfullyAddedPage(WebDriver driver) {
 
@@ -33,8 +34,6 @@ public class SuccessfullyAddedPage {
 	 * shopping cart
 	 */
 	public void proceedCheckout() {
-
-		WebElement btnProceedCheckout = driver.findElement(btn_ProceedCheckout);
 		wait.until(ExpectedConditions.visibilityOf(btnProceedCheckout));
 		btnProceedCheckout.click();
 

@@ -4,9 +4,9 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -16,10 +16,15 @@ public class LoginPage {
 
 	private WebDriver driver;
 	private Wait<WebDriver> wait;
-
-	By input_User = By.name("email");
-	By input_Password = By.name("passwd");
-	By btn_SendLogin = By.cssSelector("#SubmitLogin > span");
+	
+	@FindBy(name = "email")
+	WebElement inputUser;
+	
+	@FindBy(name = "passwd")
+	WebElement inputPassword;
+	
+	@FindBy(css = "#SubmitLogin > span")
+	WebElement btnSendLogin;
 
 	/**
 	 * 
@@ -39,16 +44,13 @@ public class LoginPage {
 	 */
 	public void loginValidUser(String user, String password) {
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		WebElement inputUser = driver.findElement(input_User);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		wait.until(ExpectedConditions.visibilityOf(inputUser));
 		inputUser.sendKeys(user);
 
-		WebElement inputPassword = driver.findElement(input_Password);
 		wait.until(ExpectedConditions.visibilityOf(inputPassword));
 		inputPassword.sendKeys(password);
 
-		WebElement btnSendLogin = driver.findElement(btn_SendLogin);
 		wait.until(ExpectedConditions.visibilityOf(btnSendLogin));
 		btnSendLogin.click();
 

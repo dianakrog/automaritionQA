@@ -4,9 +4,9 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -16,9 +16,11 @@ public class ConfirmationPage {
 	
 	private WebDriver driver;
 	private Wait<WebDriver> wait;
+	
+	@FindBy(css = "#center_column > div > p")
+	WebElement textConfirm;
 
 	// Selectors
-	By text_Confirm = By.cssSelector("#center_column > div > p");
 
 	public ConfirmationPage(WebDriver driver) {
 
@@ -33,8 +35,7 @@ public class ConfirmationPage {
 	 * Valid ORDER CONFIRMATION
 	 */
 	public void orderCobfirmation() {
-
-		WebElement textConfirm = driver.findElement(text_Confirm);
+		
 		wait.until(ExpectedConditions.titleContains("Order confirmation - My Store"));
 		Assertions.assertEquals("Your order on My Store is complete.", textConfirm.getText());
 	}

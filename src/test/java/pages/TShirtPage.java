@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -20,9 +21,11 @@ public class TShirtPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By text_product_name = By.xpath("//h5[@itemprop='name']//a");
-	By shirt_Item = By.cssSelector(".replace-2x.img-responsive");
-	By btn_addToCart = By.cssSelector(".button.ajax_add_to_cart_button.btn.btn-default");
+	@FindBy(xpath = "//h5[@itemprop='name']//a")
+	WebElement textOroductName;
+	
+	@FindBy(css = ".button.ajax_add_to_cart_button.btn.btn-default")
+	WebElement addCart;
 
 	public TShirtPage(WebDriver driver) {
 
@@ -40,14 +43,11 @@ public class TShirtPage {
 	public void addToCartProduct() {
 
 		// Execute Add to car Faded Short Sleeve T-shirts
-		WebElement textOroductName = driver.findElement(text_product_name);
+		
 		wait.until(ExpectedConditions.visibilityOf(textOroductName));
 		textOroductName.sendKeys(Keys.DOWN);
-
-		//WebElement shirtItem = driver.findElement(shirt_Item);
 		action.moveToElement(textOroductName).build().perform();
 
-		WebElement addCart = driver.findElement(btn_addToCart);
 		wait.until(ExpectedConditions.visibilityOf(addCart));
 		addCart.click();
 	}

@@ -3,9 +3,9 @@ package pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,7 +17,8 @@ public class AddressPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By btn_ProceedAddress = By.cssSelector("#center_column > form > p > button");
+	@FindBy(css = "#center_column > form > p > button")
+	WebElement btnProceedAddress;
 
 	public AddressPage(WebDriver driver) {
 
@@ -33,7 +34,6 @@ public class AddressPage {
 	 */
 	public void proceedAddress() {
 
-		WebElement btnProceedAddress = driver.findElement(btn_ProceedAddress);
 		wait.until(ExpectedConditions.visibilityOf(btnProceedAddress));
 		btnProceedAddress.click();
 	}

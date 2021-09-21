@@ -8,16 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-import pages.AddressPage;
-import pages.ConfirmationPage;
-import pages.IndexPage;
-import pages.LoginPage;
-import pages.MyAccountPage;
-import pages.PaymentPage;
-import pages.ShippingPage;
-import pages.SuccessfullyAddedPage;
-import pages.SummaryOrderPage;
-import pages.TShirtPage;
+import pages.*;
 
 public class BuyShirtSteps {
 
@@ -35,7 +26,7 @@ public class BuyShirtSteps {
 
 	@Before
 	public void initClass() {
-		
+
 		driver = new BrowserManager().startConfig();
 		PageFactory.initElements(driver, this);
 

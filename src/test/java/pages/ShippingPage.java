@@ -3,9 +3,9 @@ package pages;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,8 +17,11 @@ public class ShippingPage {
 	private Wait<WebDriver> wait;
 
 	// Selectors
-	By check_Terms = By.id("uniform-cgv");
-	By btn_ProceedShipping = By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");
+	@FindBy(id = "uniform-cgv")
+	WebElement checkTerms;
+
+	@FindBy(css = ".button.btn.btn-default.standard-checkout.button-medium")
+	WebElement btnProceedShipping;
 
 	public ShippingPage(WebDriver driver) {
 
@@ -34,7 +37,6 @@ public class ShippingPage {
 	 */
 	public void agreeTerms() {
 
-		WebElement checkTerms = driver.findElement(check_Terms);
 		wait.until(ExpectedConditions.visibilityOf(checkTerms));
 		checkTerms.click();
 
@@ -45,7 +47,6 @@ public class ShippingPage {
 	 */
 	public void checkoutShipping() {
 
-		WebElement btnProceedShipping = driver.findElement(btn_ProceedShipping);
 		wait.until(ExpectedConditions.visibilityOf(btnProceedShipping));
 		btnProceedShipping.click();
 
