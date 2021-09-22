@@ -18,10 +18,10 @@ public class ShippingPage {
 
 	// Selectors
 	@FindBy(id = "uniform-cgv")
-	WebElement checkTerms;
+	private WebElement checkTerms;
 
 	@FindBy(css = ".button.btn.btn-default.standard-checkout.button-medium")
-	WebElement btnProceedShipping;
+	private WebElement btnProceedShipping;
 
 	public ShippingPage(WebDriver driver) {
 

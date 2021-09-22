@@ -22,10 +22,10 @@ public class TShirtPage {
 
 	// Selectors
 	@FindBy(xpath = "//h5[@itemprop='name']//a")
-	WebElement textOroductName;
+	private WebElement textOroductName;
 	
 	@FindBy(css = ".button.ajax_add_to_cart_button.btn.btn-default")
-	WebElement addCart;
+	private WebElement addCart;
 
 	public TShirtPage(WebDriver driver) {
 

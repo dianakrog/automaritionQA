@@ -18,7 +18,7 @@ public class SuccessfullyAddedPage {
 
 	// Selectors
 	@FindBy(css = ".btn.btn-default.button.button-medium")
-	WebElement btnProceedCheckout;
+	private WebElement btnProceedCheckout;
 
 	public SuccessfullyAddedPage(WebDriver driver) {
 

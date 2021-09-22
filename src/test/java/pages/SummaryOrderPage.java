@@ -18,7 +18,7 @@ public class SummaryOrderPage {
 
 	// Selectors
 	@FindBy(css = ".button.btn.btn-default.standard-checkout.button-medium")
-	WebElement btnProceedSummary;
+	private WebElement btnProceedSummary;
 
 	public SummaryOrderPage(WebDriver driver) {
 

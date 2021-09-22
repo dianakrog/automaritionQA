@@ -18,9 +18,10 @@ public class PaymentPage {
 
 	// Selectors
 	@FindBy(css = "#HOOK_PAYMENT > div:nth-child(1) > div > p > a")
-	WebElement opcPayByBank;
+	private WebElement opcPayByBank;
+	
 	@FindBy(css = "#cart_navigation > button")
-	WebElement btnConfirmPayment;
+	private WebElement btnConfirmPayment;
 	
 	public PaymentPage(WebDriver driver) {
 

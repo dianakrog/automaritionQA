@@ -18,7 +18,7 @@ public class ConfirmationPage {
 	private Wait<WebDriver> wait;
 	
 	@FindBy(css = "#center_column > div > p")
-	WebElement textConfirm;
+	private WebElement textConfirm;
 
 	// Selectors
 

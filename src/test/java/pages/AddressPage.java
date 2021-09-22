@@ -18,7 +18,7 @@ public class AddressPage {
 
 	// Selectors
 	@FindBy(css = "#center_column > form > p > button")
-	WebElement btnProceedAddress;
+	private WebElement btnProceedAddress;
 
 	public AddressPage(WebDriver driver) {
 

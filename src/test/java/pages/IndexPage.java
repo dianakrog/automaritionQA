@@ -19,7 +19,7 @@ public class IndexPage {
 
 	// Selectors
 	@FindBy(xpath = "//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")
-	WebElement btnSingIn;
+	private WebElement btnSingIn;
 
 	/**
 	 * 

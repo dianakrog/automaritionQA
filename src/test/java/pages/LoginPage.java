@@ -18,13 +18,13 @@ public class LoginPage {
 	private Wait<WebDriver> wait;
 	
 	@FindBy(css = "#email")
-	WebElement inputUser;
+	private WebElement inputUser;
 	
 	@FindBy(css = "#passwd")
-	WebElement inputPassword;
+	private WebElement inputPassword;
 	
 	@FindBy(css = "#SubmitLogin > span")
-	WebElement btnSendLogin;
+	private WebElement btnSendLogin;
 
 	/**
 	 * 

@@ -18,7 +18,7 @@ public class MyAccountPage {
 
 	// Selectors
 	@FindBy(xpath = "(//a[contains(text(),'T-shirts')])[2]")
-	WebElement tabShirt;
+	private WebElement tabShirt;
 
 	public MyAccountPage(WebDriver driver) {
 
