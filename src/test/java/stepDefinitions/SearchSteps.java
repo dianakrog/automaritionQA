@@ -13,7 +13,7 @@ import Utils.*;
 
 public class SearchSteps {
 
-	public WebDriver driver = BrowserManager.startConfig();
+	public WebDriver driver = new BrowserManager().startConfig();
 
 	@Given("browser is open")
 	public void browser_is_open() {

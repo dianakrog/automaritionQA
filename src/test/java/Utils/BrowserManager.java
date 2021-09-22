@@ -8,7 +8,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BrowserManager {
 
-	public static WebDriver startConfig(){
+	public WebDriver startConfig(){
 		
 		String browser = System.getProperty("exeBrowser","firefox");
 
